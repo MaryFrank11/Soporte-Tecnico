@@ -1,0 +1,15 @@
+<tarea nombre="Administrar roles del sistema" >
+    <pagina id="1">
+        <nivel nombre="Administrar roles del sistema" id="administrarRoles" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="tabla" nombre="Administrar roles del sistema" id="administrarRoles">
+                <tabla schema="catalog" nombre="roles">
+                    <campo name="uuid_proceso" text="Proceso" columnas="3" margen-izquierdo="2"/>
+                    <campo name="uuid_rol" text="ID Rol" columnas="3" margen-derecho="2"/>
+                    <campo name="nombre_rol" text="Nombre del rol" columnas="3" margen-izquierdo="2"/>
+                </tabla>
+                
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>
+

@@ -1,0 +1,29 @@
+<tarea nombre="1" >
+    <pagina nombre="Cotizacion" id="1">
+        <nivel nombre="Cotizacion" id="1" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+           <componente tipo="tabla" nombre="cotizacion" id="COTI"> 
+                <tabla schema="catalog" nombre="dummy">
+                    <campo name="id_dummy" text="id" autogenerado="true" generacion="@prox()+1" columnas="3"  columna-visible="true" visible="true" />
+                   <campo name="nombre_equipo" text="Nombre de equipo" columnas="3" local="true" type="text" columna-visible="true" visible="true" />
+                   
+                    <campo name="cantidad" text="*Cantidad" local="true" type="string" columnas="2" margen-izquierdo="4" margen-derecho="4" validacion="%cantidad%==null" validacionMensaje="Debe registrar la cantidad">
+                        <campo name="cuenta_garantia" text="¿Cuenta con garantia?" local="true" type="string" columnas="2" margen-izquierdo="4" margen-derecho="4"/>
+                        <campo name="descripcion" text="*Descripcion" local="true" type="string" columnas="2" margen-izquierdo="4" margen-derecho="4"/>
+                        <campo name="condiciones" text="*Condiciones comerciales" local="true" type="string" columnas="2" margen-izquierdo="4" margen-derecho="4"/>
+                        <campo name="folio" text="*Folio de cotizacion" local="true" type="string" columnas="2" margen-izquierdo="4" margen-derecho="4"/>
+                        <opciones>
+                            <opcion texto="Valida Contrato" valor="1"></opcion>
+                        </opciones>
+                    </campo>
+                  
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Validar" columnas="2" margen-izquierdo="4" margen-derecho="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+            </nivel>
+    </pagina>
+</tarea>

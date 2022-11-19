@@ -1,0 +1,25 @@
+<tarea nombre="Usuarios">
+    <pagina id="1" >
+        <nivel id="DU" nombre="Pagina del registro de los usuarios" mostrarNivelAnterior="false" mostrarProximoNivel="false" mostrarEditar="true">
+            <componente id="DU" nombre="Datos de alta" tipo="formulario">
+                <tabla schema="operation" nombre="datos_alta">
+                    <campo name="id_alta" text="id" calc="$inParam.id_alta$" visible="false" />
+                    <campo name="nombre" text="Nombre del Usuario" columnas="2" margen-izquierdo="2"/>
+                    <campo name="curp" text="Curp"   columnas="2"  />
+                   
+                    <campo name="rfc" text="RFC" columnas="2"  />
+                    
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" margen-izquierdo="4" margen-derecho="4" columnas="2" />
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        
+       
+       
+    </pagina>
+</tarea>

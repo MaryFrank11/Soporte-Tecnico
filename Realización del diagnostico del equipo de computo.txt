@@ -1,0 +1,75 @@
+<tarea nombre="Diagnostico ">
+    <pagina id="1">
+        <nivel id="busquedaSolicitud" nombre="Busqueda de solicitud" composición="pestanas" interactivo="true">
+            <componente id="busquedaSolicitud" nombre="Busqueda de solicitud" tipo="busqueda">
+                <tabla schema="operation" nombre="solicitud_reporte">
+                    <campo name="id_solicitud" text="Numero de solicitud" autogenerado="true" generacion="@prox()+1" visible="false" columna="3" />
+                    <campo name="id_usuario" text="Nombre del usuario" columnas="3" marcador="Selecciona tu nombre" validacion="%id_usuario%==null" validacionMensaje ="Debes seleccionar tu nombre"/>
+                     <campo name="id_marca" text="Marca" columnas="3" marcador="Selecciona la marca de tu equipo" validacion="%id_marca%==null" validacionMensaje ="Debes seleccionar una marca" />
+                    <campo name="id_equipo" text="Numero del equipo" columnas="3" marcador="Selecciona el número de serie de tu equipo" validacion="%id_equipo%==null" validacionMensaje ="Debes seleccionar el número de serie de tu equipo" />
+                </tabla>
+                
+                <acciones>
+                    <accion nombre="selecionar" hacer="saltar pagina 2" />
+                </acciones>
+            </componente>
+        </nivel>
+    </pagina>
+        
+    
+    <pagina id="2">
+        
+        
+        
+        <nivel nombre="buscaDatosDelSolicitante" id="buscaDatosDelSolicitante" interactivo="false">
+            <componente tipo="cursor" nombre="buscaDatosDelSolicitante" id="buscaDatosDelSolicitante">
+                <tabla schema="operation" nombre="solicitud_reporte">
+                    <campo name="id_solicitud" filtroCampo="id_solicitud" filtroOperador="=" filtroValor="%busquedaSolicitud.busquedaSolicitud.id_solicitud%"/>
+                    <campo name="id_equipo" />
+                    <campo name="descripcion" />
+                    <campo name="id_marca" />
+                    <campo name="id_usuario" />
+                </tabla>
+            </componente>
+        </nivel>
+        
+        <nivel id="busquedaSolicitudBitacora" nombre="busquedaSolicitudBitacora" interactivo="false">
+            <componente  id="busquedaSolicitudBitacora" nombre="busquedaSolicitudBitacora" tipo="altaDirect">
+                <tabla schema="operation" nombre="bitacora">
+                    <campo name="folio_bitacora" autogenerado="true" generacion="@prox()+1"/>
+                    <campo name="fecha_hora_registro" calc="@fechaSistema(&quot;YYYY/MM/dd HH:mm:ss&quot;)"/>
+                    <campo name="usuario" calc="$protocolarios.user$"/>
+                    <campo name="accion_realizada" calc="'CONSULTO SOLICITUD'"/>
+                </tabla>
+            </componente>
+        </nivel>
+        
+        <nivel id="diagnosticoSoli" nombre="Diagnostico de la solicitud de revisión" composición="pestanas" interactivo="true">
+            <componente  id="diagnosticoSoli" nombre="Diagnostico de la solicitud de revisión" tipo="formulario">
+                <tabla schema="operation" nombre="diagnostico">
+                    <campo name="id_diagnostico" text="Numero de solicitud" columnas="3" autogenerado="true" generacion="@prox()+1" visible="false" />
+                    <campo name="id_ingeniero" text="Ingeniero" columnas="3"  marcador="Selecciona tu nombre" validacion="%id_ingeniero%==null" validacionMensaje ="Debes seleccionar tu nombre"/>
+                    <campo name="id_solicitud" text="Numero de solicitud" columnas="3" llaveForanea="true" marcador="Selecciona el numero de solicitud "/>
+                    <campo name="id_marca" text="Marca" columnas="3" marcador="Selecciona la marca de tu equipo" validacion="%id_marca%==null" validacionMensaje ="Debes seleccionar una marca"  />
+                    <campo name="id_equipo" text="Numero del equipo" columnas="3" marcador="Selecciona el número de serie de tu equipo" validacion="%id_equipo%==null" validacionMensaje ="Debes seleccionar el número de serie de tu equipo" />
+                     
+                     <campo name="descripcion" text="Describe lo que ocurre con el equipo" columnas="3" marcador="Describe el motivo de la solicitud" validacion="%descripcion%==null" validacionMensaje ="Debes escribir la descripción" />
+                     <campo name="posible_solucion" text="¿Tiene solición?" columnas="3" marcador="Marca si tiene posible solución, si no no" />
+                     
+            
+                </tabla>
+            </componente>
+     
+        </nivel> 
+        <nivel id="busquedaBitacora" nombre="busqueda Bitacora" interactivo="false">
+            <componente  id="busquedaBitacora" nombre="busqueda Bitacora" tipo="altaDirect">
+                <tabla schema="operation" nombre="bitacora">
+                    <campo name="folio_bitacora" autogenerado="true" generacion="@prox()+1"/>
+                    <campo name="fecha_hora_registro" calc="@fechaSistema(&quot;YYYY/MM/dd HH:mm:ss&quot;)"/>
+                    <campo name="usuario" calc="$protocolarios.user$"/>
+                    <campo name="accion_realizada" calc="'GENERO DIAGNOSTICO'"/>
+                </tabla>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

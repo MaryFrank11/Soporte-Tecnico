@@ -1,0 +1,19 @@
+<tarea nombre="Modifica Solicitud" requisitosInstalacion="">
+    <pagina id="1">
+        <nivel nombre="Modifica Solicitud" id="modificaSolicitud" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="formulario" nombre="Modifica Solicitud" id="modificaSolicitud">
+                <tabla schema="operation" nombre="solicitud_reporte">
+                    <campo name="id_solicitud" text="Numero de la solicitud" columnas="3" margen-izquierdo="2"  calc="$inParam.id_solicitud$" />
+                    <campo name="id_usuario" text="Nombre del usuario" descripcionForanea="nombre_usuario,apellido_paterno,apellido_materno" columnas="3" margen-derecho="2" habilitado="false"/>
+                    <campo name="id_marca" text="Marca del equipo de computo"  columnas="3" margen-derecho="2"/>
+                    <campo name="id_equipo" text="Numero de serie del equipo" columnas="3" margen-izquierdo="2"/>
+                    <campo name="modelo" text="Modelo del equipo" local="true" type="string" columnas="3" margen-derecho="2" habilitado="false" calcCliente="@consultaDirec('Select modelo as xxx from entity.equipo where id_equipo='+%id_equipo%,'xxx','string',$protocolarios.enterprise$)"/>
+                    <campo name="descripcion" text="Descripción"  columnas="3" margen-izquierdo="2" />
+                    <campo name="id_area" text="Id area" local="true" type="string" referenciaForanea="id_usuario" celdaForanea="id_area" autocompletar="true" columnas="3" margen-derecho="2" habilitado="false"/>
+                    <campo name="nombre_area" text="Nombre del area" local="true" type="string" columnas="3" margen-izquierdo="2" habilitado="false" calcCliente="@consultaDirec('Select nombre_area as xxx from catalog.area where id_area='+%id_area%,'xxx','string',$protocolarios.enterprise$)"/>
+                </tabla>
+                
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

@@ -1,0 +1,13 @@
+<tarea nombre="Administrar catalogo de marcas" autor="Mariana Franco">
+    <pagina id="1">
+        <nivel id="tablaMarcas" nombre="Catalogo de Marcas" >
+            <componente id="tablaMarcas" nombre="Catalogo para administrar las marcas de proveedores" tipo="tabla">
+                <tabla schema="catalog" nombre="marca">
+                    <campo name="id_marca" text="Id_Marca" columnas="3" margen-izquierdo="2" autogenerado="true" generacion="@prox()+1" columna-visible="true" visible="false"/>
+                    <campo name="marca" text="Marca" columnas="4" margen-derecho="2" margen-izquierdo="3" marcador="Ingresa la marca del equipo nuevo" validacion="%marca%==null" validacionMensaje ="Debes ingresar la marca" width="1000"  />
+                </tabla>
+            
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

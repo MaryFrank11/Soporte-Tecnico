@@ -1,0 +1,79 @@
+<tarea nombre="Solicitud de Reivisión de Equipo">
+    <pagina id="1">
+        <nivel id="consultaformularioSolicitud" nombre="Solicitud de revisión" composición="pestanas" interactivo="true">
+            <componente id="consultaformularioSolicitud" nombre="Solicitud para revisión de equipo de computo" tipo="formulario">
+                <tabla schema="operation" nombre="solicitud_reporte">
+                    <campo name="id_solicitud" text="Numero de solicitud" columnas="3" autogenerado="true" generacion="@prox()+1" visible="false" />
+                    <campo name="id_usuario" text="Nombre del usuario" columnas="3" marcador="Selecciona tu nombre" validacion="%id_usuario%==null" validacionMensaje ="Debes seleccionar tu nombre"/>
+                    <campo name="id_marca" text="Marca" columnas="3" marcador="Selecciona la marca de tu equipo" validacion="%id_marca%==null" validacionMensaje ="Debes seleccionar una marca" />
+                    <campo name="id_equipo" text="Numero del equipo" columnas="3" marcador="Selecciona el número de serie de tu equipo" validacion="%id_equipo%==null" validacionMensaje ="Debes seleccionar el número de serie de tu equipo" />
+                    <campo name="descripcion" text="Describe lo que ocurre con el equipo" columnas="3" margen-derecho="3" marcador="Describe el motivo de la solicitud" validacion="%descripcion%==null" validacionMensaje ="Debes escribir la descripción" />
+                    <!--<campo name="foto_equipo" text="Adjunta la foto del producto" local="true" type="file" columnas="5" margen-derecho="3" url="$config.repository_upload_file$" fileType="normal" expediente="Archivos subidos del usuario/Foto Del equipo" nombreDocumento="'Foto del equipo'" grupo="%consultaformularioSolicitud.consultaformularioSolicitud.id_solicitud%" update="true"  />-->
+                </tabla>
+               <!-- <acciones>
+                    <accion nombre="selecionar" hacer="saltar pagina 3" />
+                </acciones>-->
+                <estilos>
+                    <boton nombre="grabar" visible="true"  texto="Registra Solicitud" margen-izquierdo="3" columnas="3" margen-derecho="3" ></boton>
+                </estilos>
+            </componente>
+        </nivel>
+        
+        <nivel nombre="Archivos del usuario" id="archivosUsuario">
+            <componente tipo="VISOR" nombre="Archivos del usuario" id="archivosUsuario" urlServidor="$config.urlServidor$">
+                <rutas grupo="%consultaformularioSolicitud.consultaformularioSolicitud.id_solicitud%">
+                     <ruta>Archivos subidos del usuario</ruta>
+                </rutas>
+            </componente>
+        </nivel>
+        
+        <nivel nombre="buscaDatosDeSolicitud" id="buscaDatosDeSolicitud" interactivo="false">
+            <componente tipo="cursor" nombre="buscaDatosDeSolicitud" id="buscaDatosDeSolicitud">
+                <tabla schema="operation" nombre="solicitud_reporte">
+                    <campo name="id_equipo" filtroCampo="id_equipo" filtroOperador="=" filtroValor="%consultaformularioSolicitud.consultaformularioSolicitud.id_solicitud%"/>
+                    <campo name="id_usuario" />
+                </tabla>
+            </componente>
+        </nivel>
+        
+        <nivel nombre="buscaDatosDelUsuario" id="buscaDatosDelUsuario" interactivo="false">
+            <componente tipo="cursor" nombre="buscaDatosDelUsuario" id="buscaDatosDelUsuario">
+                <tabla schema="entity" nombre="usuario">
+                    <campo name="id_usuario" filtroCampo="id_usuario" filtroOperador="=" filtroValor="%consultaformularioSolicitud.consultaformularioSolicitud.id_usuario%"/>
+                    <campo name="nombre_usuario" />
+                    <campo name="apellido_paterno" />
+                    <campo name="apellido_materno" />
+                    <campo name="id_area" />
+                    
+                </tabla>
+            </componente>
+        </nivel> 
+        
+        <nivel nombre="crearNuevaInstancia" id="cI" interactivo="false">
+            <componente tipo="solicitud" nombre="" id="cI">
+                <parametros url="$config.request$" metodo="POST" accion="crearNuevaInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="'73e40234-f6b0-4b5c-8b07-2a72cf0efa6a'"/>
+                    <parametro name="user" calc="$protocolarios.user$"/>
+                    <parametro name="out_id_solicitud" calc="%consultaformularioSolicitud.consultaformularioSolicitud.id_solicitud%" mostrarEsc="true"/>
+                    <parametro name="out_usuario" calc="%consultaformularioSolicitud.consultaformularioSolicitud.id_usuario%" mostrarEsc="true"/>
+                    <parametro name="out_nombre" calc="@concatenar(%buscaDatosDelUsuario.buscaDatosDelUsuario.nombre_usuario%+' '+%buscaDatosDelUsuario.buscaDatosDelUsuario.apellido_paterno%+' '+%buscaDatosDelUsuario.buscaDatosDelUsuario.apellido_materno%)" mostrarEsc="true" />
+                    <parametro name="out_id_areaarea" calc="%buscaDatosDelUsuario.buscaDatosDelUsuario.id_area%" mostrarEsc="true" />
+                    <parametro name="out_id_equipo" calc="%consultaformularioSolicitud.consultaformularioSolicitud.id_equipo%" mostrarEsc="true"/>
+                    <parametro name="out_id_marca" calc="%consultaformularioSolicitud.consultaformularioSolicitud.id_marca%" mostrarEsc="true"/>
+                    
+                </parametros>
+            </componente>
+        </nivel>
+        
+        <nivel nombre="Reporte de solicitud" id="reporteSolicitud" >
+            <componente tipo="reporte" nombre="Reporte De solicitud" id="reporteSolicitud">
+                <reporte nombre="report1" url="$config.repository_upload_file$" expediente="Archivos subidos del usuario/Solicitudes" nombreDocumento="'Solicitud'" grupo="%consultaformularioSolicitud.consultaformularioSolicitud.id_solicitud%">
+                    <campo name="id_solicitud" type="long" calc="%consultaformularioSolicitud.consultaformularioSolicitud.id_solicitud%"/>
+                </reporte>
+            </componente>
+        </nivel>
+        
+    </pagina>
+    
+</tarea>

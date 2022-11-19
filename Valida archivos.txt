@@ -1,0 +1,32 @@
+<tarea nombre="Usuarios">
+    <pagina id="1" >
+        <nivel id="DU" nombre="Pagina del registro de los usuarios" mostrarNivelAnterior="false" mostrarProximoNivel="false" mostrarEditar="true">
+            <componente id="DU" nombre="Datos de alta" tipo="formulario">
+                <tabla schema="operation" nombre="datos_alta">
+                    <campo name="id_alta" text="id" calc="$inParam.id_alta$" visible="false" />
+                    <campo name="valida" text="Desea validar los datos?"  columnas="4" />
+                    
+                    
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" margen-izquierdo="4" margen-derecho="4" columnas="2" />
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        
+       <nivel nombre="terminarInstancia" id="tIn" interactivo="false" ejecutar="%DU.DU.valida%==true">
+           <componente tipo="solicitud" nombre="Termina" id="tIn">
+               <parametros url="$config.request$" metodo="POST" accion="terminarInstancia" tipo="json">
+                   <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                   <parametro name="process" calc="$protocolarios.process$"/>
+                   <parametro name="version" calc="$protocolarios.version$"/>
+                   <parametro name="instance" calc="$protocolarios.instance$"/>
+               </parametros>
+           </componente>
+       </nivel>
+       
+    </pagina>
+</tarea>

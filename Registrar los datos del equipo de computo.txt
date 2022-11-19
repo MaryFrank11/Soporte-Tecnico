@@ -1,0 +1,29 @@
+<tarea nombre="Registra datos de equipo" requisitosInstalacion="">
+    <pagina nombre="Registra datos de equipo" id="1">
+        <nivel nombre="Registra datos de equipo" id="RDE" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="formulario" nombre="Registra datos de equipo" id="RDE">
+                <tabla schema="entity" nombre="equipo">
+                    <campo name="id_equipo" text="Equipo" calc="$inParam.id_equipo$" columnas="2" margen-izquierdo="3"/>
+                    <campo name="id_marca" text="Marca" calc="$inParam.id_marca$" columnas="2" margen-derecho="3"/>
+                    <campo name="numero_serie" text="Numero Serie" columnas="2" margen-izquierdo="3"/>
+                    <campo name="modelo" text="Modelo" columnas="2" margen-derecho="3"/>
+                    <campo name="dia_entrega" text="Día Entrega" columnas="2" margen-izquierdo="3"/>
+                    <campo name="tiene_garantia" text="¿Tiene Garantia?" columnas="2" margen-derecho="3"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="1" margen-izquierdo="6"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+         <nivel nombre="cerrarTarea" id="cerrarTarea" interactivo="false" >
+            <componente tipo="cursor" nombre="cerrarTarea" id="cerrarTarea">
+                <tabla schema="catalog" nombre="dummy">
+                    <campo name="id_dummy" filtroCampo="id_dummy" filtroOperador="=" filtroValor="1"/>
+                </tabla>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

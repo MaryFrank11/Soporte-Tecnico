@@ -1,0 +1,38 @@
+<tarea name="Registrar equipos de computo">
+    <pagina id="1">
+        <nivel id="RegistrarLosEquipos" nombre="Registrar los equipos de computo" composición="pestanas" interactivo="true">
+            <componente id="RegistrarLosEquipos" nombre="Registrar los equipos de computo" tipo="formulario">
+                <tabla schema="entity" nombre="equipo">
+                    <campo name="id_equipo" text="ID_Equipo" columnas="3" autogenerado="true" generacion="@prox()+1" visible="false" />
+                    <campo name="id_marca" text="id_marca" columnas="3" />
+                    <campo name="numero_serie" text="Numero de serie" columnas="3" />
+                    <campo name="modelo" text="Modelo del equipo" columnas="3" />
+                    <campo name="dia_entrega" text="Día de entrega del equipo" columnas="3" llaveForanea="true" />
+                    <campo name="procesador_equipo" text="procesador" columnas="3" />
+                    <campo name="tiene_garantia" text="¿Tiene garantia?" columnas="3" />
+                </tabla>
+
+                <estilos>
+                    <boton nombre="grabar" visible="true"  texto="Guardar" ></boton>
+                </estilos>
+            </componente>
+        </nivel>
+        <nivel id="ConsultaEquipos" nombre="Consulta los equipos de computo" composición="pestanas" interactivo="true">
+            <componente id="ConsultaEquipos" nombre="Consulta los equipos de computo" tipo="tabla">
+                <tabla schema="entity" nombre="equipo">
+                    <campo name="id_equipo" text="ID_Equipo" columnas="3" />
+                    <campo name="id_marca" text="id_marca" columnas="3" />
+                    <campo name="numero_serie" text="Numero de serie" columnas="3" />
+                    <campo name="modelo" text="Modelo del equipo" columnas="3" />
+                    <campo name="dia_entrega" text="Tiempo de uso" columnas="3" llaveForanea="true" />
+                    <campo name="procesador_equipo" text="procesador" columnas="3" />
+                    <campo name="tiene_garantia" text="¿Tiene garantia?" columnas="3" />
+                </tabla>
+
+                <estilos>
+                    <boton nombre="grabar" visible="true"  texto="Guardar" ></boton>
+                </estilos>
+            </componente>
+        </nivel>        
+    </pagina>
+</tarea>

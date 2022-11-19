@@ -1,0 +1,36 @@
+<!--<tarea nombre="Error">-->
+<!--    <pagina id="1">-->
+<!--        <nivel nombre="Error" id="error" mostrarNivelAnterior="false" mostrarProximoNivel="false">-->
+<!--            <componente tipo="tabla" nombre="Error" id="error">-->
+<!--                <tabla schema="catalog" nombre="errores_comunes">-->
+<!--                    <campo name="id_error" text="ID de errores" autogenerado="true" generacion="@prox()+1" columnas="2" margen-izquierdo="3"/>-->
+<!--                    <campo name="tipo_error" text="Tipo de error" columnas="2" margen-derecho="3"/>-->
+<!--                    <campo name="descripcion_error" text="Descipcion del error" columnas="2" margen-derecho="3"/>-->
+
+<!--                </tabla>-->
+
+
+<!--            </componente>-->
+<!--        </nivel>-->
+<!--    </pagina>-->
+<!--</tarea>-->
+
+<tarea nombre="1">
+    <pagina nombre="Errores" id="1">
+        <nivel nombre="Error" id="ERR" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="tabla" nombre="Error" id="ERR">
+                <tabla schema="catalog" nombre="errores_comunes">
+                    <campo name="id_error" text="ID error" columnas="2" margen-izquierdo="3"/>
+                    <campo name="tipo_error" text="Tipo de error" columnas="2" margen-derecho="3"/>
+                    <campo name="descripcion_error" text="Descrición del error" columnas="2" margen-izquierdo="3"/>
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="1" margen-izquierdo="6"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

@@ -1,0 +1,38 @@
+<tarea nombre="Genera Garantia" requisitosInstalacion="">
+    <pagina nombre="Genera Garantia" id="1">
+        <nivel nombre="Genera Garantia" id="GG" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="formulario" nombre="Reparación" id="GG">
+                <tabla schema="operation" nombre="seguimiento">
+                    <campo name="id_seguimiento" text="Seguimiento" autogenerado="true" generacion="@prox()+1" columnas="2" margen-izquierdo="2"/>
+                    <campo name="id_pedido" text="Pedido" calc="$inParam.id_cotizacion$" columnas="2" />
+                    <campo name="id_cotizacion" text="Cotización" calc="$inParam.id_cotizacion$" columnas="2" margen-derecho="2" />
+                    <campo name="id_equipo" text="Equipo" calc="$inParam.id_equipo$" llaveForanea="false" columnas="2" margen-izquierdo="2"/>
+                    <campo name="id_marca" text="Marca" calc="$inParam.id_marca$" columnas="2"  />
+                    <campo name="fecha" text="Fecha" columnas="2" margen-derecho="2"/>
+                     <campo name="id_ingeniero" text="Nombre de ingeniero" columnas="2" margen-izquierdo="2"/>
+                    <campo name="detalle" text="detalle el equipo" columnas="2" />
+                    <campo name="estatus" text="Esta lista?" local="true" type="bool" columnas="2" />
+                   
+                    
+                  
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="1" margen-izquierdo="6"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+    
+        
+        <nivel nombre="cerrarTarea" id="cerrarTarea" interactivo="false" >
+            <componente tipo="cursor" nombre="cerrarTarea" id="cerrarTarea">
+                <tabla schema="catalog" nombre="dummy">
+                    <campo name="id_dummy" filtroCampo="id_dummy" filtroOperador="=" filtroValor="1"/>
+                </tabla>
+            </componente>
+        </nivel>
+  
+    </pagina>
+</tarea>

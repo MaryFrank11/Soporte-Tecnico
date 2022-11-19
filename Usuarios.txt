@@ -1,0 +1,40 @@
+USUARIOS SOPORTE TECNICO
+
+
+Administrar usuarios.
+SuperSTU
+SuperSTUV
+cz08qOw^7ZSC9@
+
+Proveedor de equipos
+STW_PEC
+STW_PEVE
+
+Soporte tecnico.
+ST_STG
+ST_STD
+ST_STA
+
+
+Validador de Garantias.
+ST_VGG
+ST_VGV
+cz08qOw^7ZSC9@
+
+Seguimiento de equipo
+ST_SEPR
+ST_SEPG
+cz08qOw^7ZSC9@
+
+Reparación de fabrica.
+ST_RFGN
+ST_RFGR
+cz08qOw^7ZSC9@
+
+Cotización de piezas 
+ST_CPPS
+ST_CPPV
+
+Comprar Piezas.
+ST_CPC
+ST_CPR

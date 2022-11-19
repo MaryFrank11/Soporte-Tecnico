@@ -1,0 +1,12 @@
+<tarea nombre="Administrar procesos de sistema" >
+    <pagina id="1">
+        <nivel nombre="Administrar procesos de sistema" id="administrarProcesos" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="tabla" nombre="Administrar procesos de sistema" id="administrarProcesos">
+                <tabla schema="catalog" nombre="procesos">
+                    <campo name="uuid_proceso" text="Id del proceso" columnas="3" margen-izquierdo="2"/>
+                    <campo name="nombre_proceso" text="Nombre del proceso" columnas="3" margen-derecho="2"/>
+                </tabla>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

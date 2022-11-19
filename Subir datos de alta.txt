@@ -1,0 +1,37 @@
+<tarea nombre="Usuarios">
+    <pagina id="1" >
+        <nivel id="DU" nombre="Pagina del registro de los usuarios" mostrarNivelAnterior="false" mostrarProximoNivel="false" >
+            <componente id="DU" nombre="Datos de alta" tipo="formulario">
+                <tabla schema="operation" nombre="datos_alta">
+                    <campo name="id_alta" text="id" autogenerado="true" generacion="@prox()+1" columnas="2" visible="false" />
+                    <campo name="nombre" text="Nombre del Usuario" columnas="2" margen-izquierdo="2" />
+                    <campo name="curp" text="Curp"   columnas="2"  />
+                   
+                    <campo name="rfc" text="RFC" columnas="2"  />
+                    
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" margen-izquierdo="4" margen-derecho="4" columnas="2" />
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        
+        <nivel nombre="crearNuevaInstancia" id="cI" interactivo="false">
+            <componente tipo="solicitud" nombre="" id="cI">
+                <parametros url="$config.request$" metodo="POST" accion="crearNuevaInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="'97443af2-6d05-4d05-b8f2-ee938b209646'"/>
+                    <parametro name="user" calc="$protocolarios.user$"/>
+                    <parametro name="out_id_alta" calc="%DU.DU.id_alta%" mostrarEsc="true"/>
+                    <parametro name="out_nombre" calc="%DU.DU.nombre%" mostrarEsc="true"/>
+                    <parametro name="out_curp" calc="%DU.DU.curp%" mostrarEsc="true"/>
+                    <parametro name="out_rfc" calc="%DU.DU.rfc%" mostrarEsc="true"/>
+                </parametros>
+            </componente>
+        </nivel>
+       
+    </pagina>
+</tarea>

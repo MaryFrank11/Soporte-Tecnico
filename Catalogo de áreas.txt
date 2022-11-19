@@ -1,0 +1,12 @@
+<tarea nombre="Importación de Area">
+    <pagina id="1">
+        <nivel nombre="Importación de area" id="importacion" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="tabla" nombre="Importación de areas" id="importacion" mostrarImportacion="true">
+                <tabla schema="catalog" nombre="area">
+                    <campo name="id_area" text="Id Area" columnas="3" margen-izquierdo="2" importacion="true" autogenerado="true" generacion="@prox()+1" />
+                    <campo name="nombre_area" text="Area"  columnas="3" margen-derecho="2" importacion="true" columnaImportacion="NombreDelArea" validacionImportacion="@ifThenElse(%NombreDelArea%=='',true,false)"/>
+                </tabla>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

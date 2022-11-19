@@ -1,0 +1,72 @@
+<tarea nombre="Validación de garantias" requisitosInstalacion="">
+    <pagina nombre="Validacion de garantias" id="1">
+        <nivel nombre="Validacion de garantias" id="VALI" mostrarNivelAnterior="false" mostrarProximoNivel="false">
+            <componente tipo="formulario" nombre="Validacion de garantias" id="VALI">
+                <tabla schema="operation" nombre="garantia">
+                    <campo name="id_grantia" text="Numero de serie del equipo" autogenerado="true" generacion="@prox()+1" columnas="2" margen-izquierdo="2" />
+                    <campo name="id_equipo" text="Equipo" calc="$inParam.id_equipo$" llaveForanea="false" visible="true" columnas="2"/>
+                    <campo name="id_marca" text="Marca" calc="$inParam.id_marca$" llaveForanea="false" visible="true" columnas="2" margen-derecho="2"/>
+                    <campo name="usuario" text="Tiempo de uso" calc="$inParam.id_usuario$" visible="false" local="true" type="string" columnas="2" />
+                    <campo name="solicitud" text="Tiempo de uso" calc="$inParam.id_solicitud$" visible="false" local="true" type="string" columnas="2" />
+                    <campo name="folio" text="Folio"  visible="true" calc="@concatenar('STG-'+%id_grantia%)" columnas="2" margen-izquierdo="2"/>
+                    <campo name="tiempo_uso" text="Tiempo de uso" local="true" type="text" columnas="2" />
+                    <!--<campo name="Archivo" text="Archivo del formato de garantia valido" local="true" type="file" columnas="2"/>-->
+                    <campo name="val_auto" text="Validar *" local="true" type="string" columnas="2" margen-izquierdo="4" margen-derecho="4" validacion="%val_auto%==null" validacionMensaje="Selecciona algo">
+                        <opciones>
+                            <opcion texto="Autoriza" valor="1"></opcion>
+                            <opcion texto="No Autoriza" valor="2"></opcion>
+                        </opciones>
+                    </campo>
+                    
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="2"  margen-izquierdo="4"/>
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+      
+           <nivel nombre="crearNuevaInstancia" id="cI" interactivo="false" ejecutar="%VALI.VALI.val_auto%=='1'">
+            <componente tipo="solicitud" nombre="" id="cI">
+                <parametros url="$config.request$" metodo="POST" accion="crearNuevaInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="'1bc67e85-3280-46ee-b5d6-c9248c32df3c'"/>
+                    <parametro name="user" calc="$protocolarios.user$"/>
+                    <parametro name="out_id_solicitud" calc="%VALI.VALI.solicitud%" mostrarEsc="true"/>
+                    <parametro name="out_id_usuario" calc="%VALI.VALI.usuario%" mostrarEsc="true"/>
+                    <parametro name="out_id_marca" calc="%VALI.VALI.id_marca%" mostrarEsc="true"/>
+                    <parametro name="out_id_equipo" calc="%VALI.VALI.id_equipo%" mostrarEsc="true"/>
+                    <parametro name="out_id_grantia" calc="%VALI.VALI.id_grantia%" mostrarEsc="true"/>
+                    <parametro name="out_folio" calc="%VALI.VALI.folio%" mostrarEsc="true"/>
+                </parametros>
+            </componente>
+        </nivel>
+           <nivel nombre="crearNuevaInstancia" id="cI2" interactivo="false" ejecutar="%VALI.VALI.val_auto%=='2'">
+            <componente tipo="solicitud" nombre="" id="cI2">
+                <parametros url="$config.request$" metodo="POST" accion="crearNuevaInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="'d8164dd0-05fd-48ed-aed2-44e8eaa5c149'"/>
+                    <parametro name="user" calc="$protocolarios.user$"/>
+                    <parametro name="out_id_solicitud" calc="%VALI.VALI.solicitud%" mostrarEsc="true"/>
+                    <parametro name="out_id_usuario" calc="%VALI.VALI.usuario%" mostrarEsc="true"/>
+                    <parametro name="out_id_marca" calc="%VALI.VALI.id_marca%" mostrarEsc="true"/>
+                    <parametro name="out_id_equipo" calc="%VALI.VALI.id_equipo%" mostrarEsc="true"/>
+                    <parametro name="out_id_grantia" calc="%VALI.VALI.id_grantia%" mostrarEsc="true"/>
+                    <parametro name="out_folio" calc="%VALI.VALI.folio%" mostrarEsc="true"/>
+                </parametros>
+            </componente>
+        </nivel>
+      <nivel nombre="terminarInstancia" id="tIn" interactivo="false" >
+            <componente tipo="solicitud" nombre="Termina" id="tIn">
+                <parametros url="$config.request$" metodo="POST" accion="terminarInstancia" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="$protocolarios.process$"/>
+                    <parametro name="version" calc="$protocolarios.version$"/>
+                    <parametro name="instance" calc="$protocolarios.instance$"/>
+                </parametros>
+            </componente>
+        </nivel>
+    </pagina>
+</tarea>

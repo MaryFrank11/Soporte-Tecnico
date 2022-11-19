@@ -1,0 +1,52 @@
+<tarea nombre="Usuarios">
+    <pagina id="1" >
+        <nivel id="regitroUsuarios" nombre="Pagina del registro de los usuarios" mostrarNivelAnterior="false" mostrarProximoNivel="false" >
+            <componente id="regitroUsuarios" nombre="Pagina del registro de los usuarios" tipo="formulario">
+                <tabla schema="entity" nombre="usuario">
+                    <campo name="id_usuario" text="Username" columnas="3" columna-visible="true" visible="true" />
+                    <campo name="nombre_usuario" text="Nombre del Usuario" columnas="3" />
+                    <campo name="apellido_paterno" text="Apellido paterno" columnas="3" />
+                    <campo name="apellido_materno" text="Apellido materno" columnas="3" />
+                    <campo name="id_area" text="area" columnas="3" />
+                    <campo name="correo" text="Correo del usuario" columnas="3" />
+                    <campo name="contrasena" text="Contraseña temporal" columnas="3" local="true" type="string" ocultarCaptura="true" />
+                    <campo name="uuid_proceso" text="Asigna Un proceso" columnas="3" />
+                    <campo name="uuid_rol" text="Asigna un rol" columnas="3" />
+                </tabla>
+                <estilos>
+                    <boton nombre="grabar" texto="Guardar" columnas="3" />
+                </estilos>
+                <acciones>
+                    <accion nombre="grabar" hacer="saltar siguiente nivel"/>
+                </acciones>
+            </componente>
+        </nivel>
+        
+        <nivel id="InyectaUsuarioABD" nombre="InyectaUsuarioABD" interactivo="false">
+            <componente id="InyectaUsuarioABD" nombre="InyectaUsuarioABD" tipo="solicitud">
+                <parametros url="$config.request$" metodo="POST" accion="addUser" tipo="json">
+                    <parametro name="idUser" calc="%regitroUsuarios.regitroUsuarios.id_usuario%"/>
+                    <parametro name="nombre" calc="@concatenar(%regitroUsuarios.regitroUsuarios.nombre_usuario%+' '+%regitroUsuarios.regitroUsuarios.apellido_paterno%+' '+%regitroUsuarios.regitroUsuarios.apellido_materno%)"/>
+                    <parametro name="contrasena" calc="%regitroUsuarios.regitroUsuarios.contrasena%"/>
+                    <parametro name="tipo" calc="'oper'"/>
+                    <parametro name="roles" calc="'6'"/>
+                    <parametro name="correo" calc="%regitroUsuarios.regitroUsuarios.correo%"/>
+                    <parametro name="urlMenu" calc="''"/>
+                </parametros>
+            </componente>
+        </nivel>
+        
+        <nivel id="InyectaRolesUsuario" nombre="InyectaRol" interactivo="false">
+            <componente id="InyectaRolesUsuario" nombre="InyectaRol" tipo="solicitud">
+                <parametros url="$config.request$" metodo="POST" accion="agregarRolAUsuario" tipo="json">
+                    <parametro name="enterprise" calc="$protocolarios.enterprise$"/>
+                    <parametro name="process" calc="%regitroUsuarios.regitroUsuarios.uuid_proceso%"/>
+                    <parametro name="version" calc="1"/>
+                    <parametro name="user" calc="%regitroUsuarios.regitroUsuarios.id_usuario%"/>
+                    <parametro name="RoleId" calc="%regitroUsuarios.regitroUsuarios.uuid_rol%"/>
+                </parametros>
+            </componente>
+        </nivel>
+      
+    </pagina>
+</tarea>
